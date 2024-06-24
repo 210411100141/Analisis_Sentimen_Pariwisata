@@ -1,4 +1,0 @@
-streamlit
-textblob
-altair
-vaderSentiment
