@@ -2,3 +2,6 @@ streamlit
 textblob
 altair
 vaderSentiment
+pandas==1.4.0
+scikit-learn==0.24.2
+nltk==3.6.5
