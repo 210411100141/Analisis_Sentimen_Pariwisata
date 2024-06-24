@@ -37,7 +37,7 @@ with st.form(key='nlpForm'):
 
 # Load data dan preprocessing
 if submit_button:
-    df = pd.read_csv("reviewHotelJakarta.csv", encoding="latin-1")
+    df = pd.read_csv("reviewPantaiBali.csv", encoding="latin-1")
     df.drop(columns=['Hotel_name', 'name'], inplace=True)
 
     # Proses data
