@@ -27,7 +27,7 @@ def lemmatize_text(token_list, lemmatizer, stop_words):
     return " ".join([lemmatizer.lemmatize(token) for token in token_list if not token in set(stop_words)])
 
 # Inisialisasi aplikasi Streamlit
-st.title("Aplikasi Analisis Sentimen NLP")
+st.title("Aplikasi Analisis Sentimen")
 st.subheader("Proyek Streamlit")
 
 # Form untuk input teks
@@ -42,7 +42,7 @@ if submit_button:
 
     # Proses data
     df['cleaned_text'] = df['review'].apply(lambda x: clean_text(x))
-    df['label'] = df['rating'].map({1.0:0, 2.0:0, 3.0:0, 4.0:1, 5.0:1})
+    df['label'] = df['rating'].map({1.0: 0, 2.0: 0, 3.0: 0, 4.0: 1, 5.0: 1})
     df['review_len'] = df['review'].apply(lambda x: len(str(x)) - str(x).count(" "))
     df['punct'] = df['review'].apply(lambda x: count_punct(str(x)))
     df['tokens'] = df['cleaned_text'].apply(lambda x: tokenize_text(x))
@@ -80,29 +80,5 @@ if submit_button:
     else:
         st.markdown("Sentimen: Negatif :angry:")
 
-    # Analisis sentimen token
-    def analyze_token_sentiment(text):
-        analyzer = SentimentIntensityAnalyzer()
-        pos_list = []
-        neg_list = []
-        neu_list = []
-        for i in text.split():
-            res = analyzer.polarity_scores(i)['compound']
-            if res > 0.1:
-                pos_list.append((i, res))
-            elif res <= -0.1:
-                neg_list.append((i, res))
-            else:
-                neu_list.append(i)
-        result = {'positives': pos_list, 'negatives': neg_list, 'neutral': neu_list}
-        return result
-
-    token_sentiments = analyze_token_sentiment(raw_text)
-    st.write("**Analisis Sentimen Token:**")
-    st.write(token_sentiments)
-
-
 if __name__ == '__main__':
-	main()
-
-
+    main()
